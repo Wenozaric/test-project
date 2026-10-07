@@ -1,0 +1,11 @@
+const fs=require('fs'), path=require('path'), {execSync}=require('child_process');
+function h2r(h){h=h.replace('#','');let v=parseInt(h,16);if(h.length===3)return[parseInt(h[0]+h[0],16),parseInt(h[1]+h[1],16),parseInt(h[2]+h[2],16)];return[(v>>16)&255,(v>>8)&255,v&255]}
+function rgba(h,a){let[r,g,b]=h2r(h);return `rgba(${r},${g},${b},${a})`}
+const T={
+ amber:{n:'AMBER CRT',f:'cyber_sim_amber.html',bg:'#0a0800',pl:'#1a1500',i1:'#241d00',i2:'#2a2300',hd:'#120f00',inp:'#080500',ac:'#ffb000',ac2:'#ff8c00',tx:'#ffcc88',li:'#ffaa00',rd:'#ff3344',og:'#ff8c00',yw:'#ffb000',tr:'#1a1500',gr:'amber'},
+ ghost:{n:'GHOST TERMINAL',f:'cyber_sim_ghost.html',bg:'#0a0a0a',pl:'#141414',i1:'#1e1e1e',i2:'#1e1e1e',hd:'#141414',inp:'#0e0e0e',ac:'#e5e5e5',ac2:'#a0a0a0',tx:'#c5c5c5',li:'#bbbbbb',rd:'#ff4444',og:'#ff8800',yw:'#ffcc00',tr:'#141414',gr:'none'},
+ nord:{n:'NORD FROST',f:'cyber_sim_nord.html',bg:'#2e3440',pl:'#3b4252',i1:'#434c5e',i2:'#434c5e',hd:'#2e3440',inp:'#2e3440',ac:'#88c0d0',ac2:'#81a1c1',tx:'#eceff4',li:'#a3be8c',rd:'#bf616a',og:'#d08770',yw:'#ebcb8b',tr:'#3b4252',gr:'nord'},
+ dracula:{n:'DRACULA NEON',f:'cyber_sim_dracula.html',bg:'#282a36',pl:'#343746',i1:'#3a3d4e',i2:'#44475a',hd:'#282a36',inp:'#1e1f2a',ac:'#50fa7b',ac2:'#bd93f9',tx:'#f8f8f2',li:'#f1fa8c',rd:'#ff5555',og:'#ffb86c',yw:'#f1fa8c',tr:'#282a36',gr:'dracula'},
+ red:{n:'RED TEAM',f:'cyber_sim_red.html',bg:'#0f0505',pl:'#1a0a0a',i1:'#241010',i2:'#2a1212',hd:'#1a0a0a',inp:'#0f0505',ac:'#ff3344',ac2:'#ffaa00',tx:'#ffd5d5',li:'#ff6b35',rd:'#ff3344',og:'#ff6b35',yw:'#ffaa00',tr:'#1a0a0a',gr:'red'},
+ midnight:{n:'MIDNIGHT BLUE',f:'cyber_sim_midnight.html',bg:'#020617',pl:'#0f172a',i1:'#1e293b',i2:'#1e293b',hd:'#020617',inp:'#020617',ac:'#38bdf8',ac2:'#0ea5e9',tx:'#e0f2fe',li:'#22d3ee',rd:'#ef4444',og:'#f97316',yw:'#eab308',tr:'#0f172a',gr:'midnight'}
+};
